@@ -55,7 +55,10 @@ module.exports = async (readInput, logger) => {
 ```
 
 ## Les copains
-- [François](https://github.com/fdubrez/advent-of-code-2k22)
-- [JLT](https://gitlab.com/jltrom/aoc/)
-- [Meven](https://github.com/mmeven/adventOfCode2022)
-- [Mathieu](https://gitlab.com/gasouch/advent-of-code-2022/)
+- [François](https://github.com/fdubrez/advent-of-code-2k22) Py
+- [JLT](https://gitlab.com/jltrom/aoc/) Py
+- [Meven](https://github.com/mmeven/adventOfCode2022) kotlin
+- [Mathieu](https://gitlab.com/gasouch/advent-of-code-2022/) Java
+- [Alex](https://gitlab.com/DAlexis/advent-of-code-2022/-/tree/main/) Rust
+- [Quentin](https://gitlab.com/DAlexis/advent-of-code-2022/-/tree/main/) Node TS
+- [Audren](https://github.com/Firnael/advent-of-code-2022) Py
