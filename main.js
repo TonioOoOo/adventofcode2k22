@@ -40,13 +40,12 @@ const log = function () {
 async function openAdventCalendar(){
     log(banner()); // 🥹
     log("Here we gooo! " + ((dryRun) ? "(⚗️ Dry Run)" : "(🚀 For real)"))
-    // Pour essayer de craner
-    let start = process.hrtime(); 
+
+    // ⏲️ - Pour essayer de craner
+    console.time('\n🏁 Execution: ⚡️ ')
     // ☢️ 🧠
     let result = await ruuuuuun(readInput, log);
-    // ⏲️
-    let elapsed = process.hrtime(start)[1] / 1000000;
-    let sec = process.hrtime(start)[0];
+    console.timeEnd('\n🏁 Execution: ⚡️ ')
 
     log("")
     if(dryRun){
@@ -63,10 +62,6 @@ async function openAdventCalendar(){
       log(result);
       log("-------")
     }
-    
-    
-    log("")
-    log(`🏁 Execution: ⚡️ ${sec} s, ${elapsed.toFixed(3)} ms`);
     log("")
     log("Bye! ❄️")
 }
