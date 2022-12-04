@@ -32,8 +32,8 @@ const readInput = async function (handlerAsync) {
     await handlerAsync(undefined, true);
 };
 // Wrap log... 
-const log = function (log) {
-    console.log(log); // Wahouw!
+const log = function () {
+  console.log.apply(console, arguments);
 };
 
 // Main
