@@ -4,13 +4,46 @@ const queues =[[],[],[],[],[],[],[],[],[]],
 let init = true, firstItr = true, queueCount = 3,
   boundary = " 1   2   3   4   5   6   7   8   9 ";
 
-const move = function(from, to, times){
+const move = async function(from, to, times){
   from--;
   to--;
   for (let i = 0; i < times; i++) {
     queues[to].push(queues[from].pop())
   }
+  await printMove();
 }
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const clearLines = (n) => {
+  if(int == 1) return;
+    for (let i = 0; i < n; i++) {
+      const y = i === 0 ? null : -1
+      process.stdout.moveCursor(0, y)
+      process.stdout.clearLine(1)
+    }
+    process.stdout.cursorTo(0)
+  }
+let int = 1;
+const printMove = async function(){
+  clearLines(11)
+  console.log("Move", int++)
+  for (let i = 0; i < queueCount; i++) {
+    let message = "|";
+    for(let item of queues[i]){
+      message += item;
+    }
+    console.log(message)
+  }
+  
+  await sleep(50);
+}
+
+
+
 const putInQueue = function(char, queueIndex){
   if(char && char != " ") queues[queueIndex].unshift(char);
 }
@@ -18,7 +51,7 @@ const putInQueue = function(char, queueIndex){
 
 let score = 0;
 module.exports = async (readInput, log) => {
-  await readInput((line, eof) => {
+  await readInput(async (line, eof) => {
     if(!line || eof){
       // Nothing to do
     }else{
@@ -36,7 +69,7 @@ module.exports = async (readInput, log) => {
         }
       }else{ // Order
         let match = line.match(orderRexex);
-        move(match[2], match[3], match[1])
+        await move(match[2], match[3], match[1])
       }
     }
   });
