@@ -9,13 +9,22 @@ const move = async function(from, to, times){
   to--;
   for (let i = 0; i < times; i++) {
     queues[to].push(queues[from].pop())
+    await printMove(from, to);
   }
-  await printMove();
 }
-
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+let text = [...new Set('CBHWDJQPFZLGZNPJSVZCHZGTZCVBMMCQCGHSVLDFFGLFBJVLVGLNJ')];
+let replaceGift = ['🎄', '🌟', '⛄', '🦌', '🔔','🎁','🎅','🤶', '🧦', '🔫', '🪀', '🩲', '🦖','🎮','🎀','🧸', '🪁'];
+function replace(items, index, currentQueue){
+  if(items.length > index){
+    return replaceGift[text.indexOf(items[index])];
+  } // 🧲
+  if(currentQueue) return (items.length == index) ? "🧲" : "⛓️ ";
+  return "⚫";
 }
 
 const clearLines = (n) => {
@@ -28,18 +37,24 @@ const clearLines = (n) => {
     process.stdout.cursorTo(0)
   }
 let int = 1;
-const printMove = async function(){
-  clearLines(11)
+const printMove = async function(from, to){
+  clearLines(47)
   console.log("Move", int++)
-  for (let i = 0; i < queueCount; i++) {
-    let message = "|";
-    for(let item of queues[i]){
-      message += item;
+  let me = "🏗️ 🔗"
+  for (let j = 0; j < queueCount; j++) {
+     me += (from == j || to == j) ? "⚙️ " : ((from > j || to > j) ? '🔗' : '⚫');
+     me += (from > j || to > j) ? '🔗' : '⚫';
+  }
+  console.log(me)
+  for(let i = 42; i >= 0; i--){
+    let message = "💈⚫";
+    for (let j = 0; j < queueCount; j++) {
+       message += `${replace(queues[j], i, from == j || to == j)}⚫`; 
     }
     console.log(message)
   }
-  
-  await sleep(50);
+  console.log("🚧🚧1️⃣ 🚧2️⃣ 🚧3️⃣ 🚧4️⃣ 🚧5️⃣ 🚧6️⃣ 🚧7️⃣ 🚧8️⃣ 🚧9️⃣ 🪜")
+  await sleep(40);
 }
 
 
